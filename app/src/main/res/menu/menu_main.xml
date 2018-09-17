@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/group_logged" android:visible="false">
+
+        <item android:id="@+id/menu_advertisement"
+            android:title="Meus Anuncios" />
+
+        <item android:id="@+id/menu_sair"
+            android:title="Sair" />
+
+    </group>
+
+    <group android:id="@+id/group_logout" android:visible="true">
+
+        <item android:id="@+id/menu_register"
+            android:title="Cadastrar / entrar"
+            app:showAsAction="always" />
+    </group>
+
+</menu>

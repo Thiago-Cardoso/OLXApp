@@ -7,7 +7,7 @@
     android:layout_margin="16dp"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
 
     <ImageView
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editRegisterEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_edit_text"
@@ -28,7 +28,7 @@
         android:padding="10dp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editRegisterPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-2dp"
@@ -53,7 +53,7 @@
             tools:text="Logar" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/switchAccess"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -67,7 +67,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonAccess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
