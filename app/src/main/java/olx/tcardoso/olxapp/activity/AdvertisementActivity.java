@@ -49,10 +49,12 @@ public class AdvertisementActivity extends AppCompatActivity {
             case R.id.menu_register:
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 break;
-
             case R.id.menu_sair:
                 authentication.signOut();
                 invalidateOptionsMenu();
+                break;
+            case R.id.menu_advertisement:
+                startActivity(new Intent(getApplicationContext(), MyAdvertisementActivity.class));
                 break;
         }
 
