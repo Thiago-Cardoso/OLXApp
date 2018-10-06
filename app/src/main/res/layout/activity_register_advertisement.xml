@@ -104,7 +104,7 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="validateDataAdvertisement"
+        android:onClick="validarDadosAnuncio"
         android:text="Cadastrar anúncio"
         android:theme="@style/botaoPadrao" />
 </LinearLayout>

@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,13 +20,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.blackcat.currencyedittext.CurrencyEditText;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.santalu.widget.MaskEditText;
@@ -78,7 +73,7 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
 
     public void saveAdvertisement(){
         //save image in storage
-       for(int i=0; i <= listPhotoRecovery.size(); i++){
+       for(int i=0; i < listPhotoRecovery.size(); i++){
             String urlImage = listPhotoRecovery.get(i);
             int sizeList = listPhotoRecovery.size();
             savePhotoStorage(urlImage, sizeList, i);
@@ -87,14 +82,13 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
 
     private void savePhotoStorage(String urlString, final int totalPhotos, int cont){
         //Create nó in firebase
-        final StorageReference imageAdvertisement = storage.child("imagens")
+        StorageReference imageAdvertisement = storage.child("imagens")
                 .child("anuncios")
                 .child(advertisement.getIdAdvertisement())
                 .child("imagem"+cont);
 
         // make upload of file
         UploadTask uploadTask = imageAdvertisement.putFile( Uri.parse(urlString) );
-
 
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -117,7 +111,6 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
                 Log.i("INFO", "Falha ao fazer upload: " + e.getMessage());
             }
         });
-
     }
 
     private Advertisement configurateAdvertisement(){
@@ -139,7 +132,7 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
         return advertisement;
     }
 
-    public void validateDataAdvertisement(View view){
+    public void validarDadosAnuncio(View view){
         String phoneAux = "";
         advertisement = configurateAdvertisement();
         if(fieldPhone.getRawText() != null){
@@ -204,7 +197,7 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == Activity.RESULT_OK){
