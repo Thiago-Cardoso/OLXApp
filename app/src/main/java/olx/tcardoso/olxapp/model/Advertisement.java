@@ -35,6 +35,27 @@ public class Advertisement {
         saveAdvertisementPublic();
     }
 
+    public void remove(){
+        String idUser = ConfigurationFirebase.getIdUser();
+        DatabaseReference advertisementRef = ConfigurationFirebase.getFirebase()
+                .child("meus_anuncios")
+                .child(idUser)
+                .child(getIdAdvertisement());
+
+        advertisementRef.removeValue();
+        removeAdvertisementPublic();
+    }
+
+    public void removeAdvertisementPublic(){
+        DatabaseReference advertisementRef = ConfigurationFirebase.getFirebase()
+                .child("anuncios")
+                .child(getState())
+                .child(getCategory())
+                .child(getIdAdvertisement());
+
+        advertisementRef.removeValue();
+    }
+
 
     public void saveAdvertisementPublic(){
         DatabaseReference advertisementRef = ConfigurationFirebase.getFirebase()
