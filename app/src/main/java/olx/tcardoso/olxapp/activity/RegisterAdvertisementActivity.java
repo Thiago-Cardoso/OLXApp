@@ -2,13 +2,13 @@ package olx.tcardoso.olxapp.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import dmax.dialog.SpotsDialog;
 import olx.tcardoso.olxapp.R;
 import olx.tcardoso.olxapp.helper.ConfigurationFirebase;
 import olx.tcardoso.olxapp.helper.Permissoes;
@@ -46,6 +47,7 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
     private MaskEditText fieldPhone;
     private Advertisement advertisement;
     private StorageReference storage;
+    private AlertDialog dialog;
 
     private String[] permission = new String[]{
 
@@ -72,6 +74,12 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
 
 
     public void saveAdvertisement(){
+      dialog = new SpotsDialog.Builder()
+              .setContext(this)
+              .setMessage("Salvando Anúncio")
+              .setCancelable(false)
+              .build();
+      dialog.show();
         //save image in storage
        for(int i=0; i < listPhotoRecovery.size(); i++){
             String urlImage = listPhotoRecovery.get(i);
@@ -102,6 +110,9 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
                 if(totalPhotos == listUrlPhotos.size()){
                     advertisement.setPhoto(listUrlPhotos);
                     advertisement.save();
+
+                    dialog.dismiss();
+                    finish();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -117,7 +128,7 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
         String state = fieldState.getSelectedItem().toString();
         String category = fieldCategory.getSelectedItem().toString();
         String title = fieldTitle.getText().toString();
-        String value = String.valueOf(fieldValue.getRawValue());
+        String value = fieldValue.getText().toString();
         String phone = fieldPhone.getText().toString();
         String description = fieldDescription.getText().toString();
 
@@ -135,6 +146,7 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
     public void validarDadosAnuncio(View view){
         String phoneAux = "";
         advertisement = configurateAdvertisement();
+        String value = String.valueOf(fieldValue.getRawValue());
         if(fieldPhone.getRawText() != null){
             phoneAux = fieldPhone.getRawText().toString();
         }
@@ -143,7 +155,7 @@ public class RegisterAdvertisementActivity extends AppCompatActivity implements 
             if(!advertisement.getState().isEmpty()){
                 if(!advertisement.getCategory().isEmpty()){
                     if(!advertisement.getTitle().isEmpty()){
-                        if(!advertisement.getValue().isEmpty() && !advertisement.getValue().equals("0")){
+                        if(!value.isEmpty() && !value.equals("0")){
                             if(!advertisement.getPhone().isEmpty() && phoneAux.length() >= 10){
                                 if(!advertisement.getDescription().isEmpty()){
 

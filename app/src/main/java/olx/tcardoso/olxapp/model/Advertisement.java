@@ -31,6 +31,19 @@ public class Advertisement {
         advertisementRef.child(idUser)
                 .child(getIdAdvertisement())
                 .setValue(this);
+
+        saveAdvertisementPublic();
+    }
+
+
+    public void saveAdvertisementPublic(){
+        DatabaseReference advertisementRef = ConfigurationFirebase.getFirebase()
+                .child("anuncios");
+
+        advertisementRef.child(getState())
+                .child(getCategory())
+                .child(getIdAdvertisement())
+                .setValue(this);
     }
 
     public String getPhone() {

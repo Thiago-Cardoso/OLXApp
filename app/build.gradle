@@ -41,6 +41,14 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:15.0.0'
     implementation 'com.google.firebase:firebase-auth:15.0.0'
 
+    //dependencie dialog
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
+    //dependencies for cardview
+    implementation 'com.android.support:cardview-v7:27.1.1'
+
+    //dependencie for Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 }
 
