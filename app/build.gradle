@@ -28,7 +28,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-
     //Dependencies mask coin
     implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
 
@@ -49,6 +48,9 @@ dependencies {
 
     //dependencie for Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //dependencies carousel view
+    compile 'com.synnapps:carouselview:0.1.5'
 
 }
 
