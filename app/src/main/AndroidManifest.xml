@@ -33,7 +33,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="olx.tcardoso.olxapp.activity.AdvertisementActivity" />
         </activity>
-        <activity android:name=".activity.RegisterAdvertisementActivity"></activity>
+        <activity android:name=".activity.RegisterAdvertisementActivity" />
+        <activity android:name=".activity.ProductDetailActivity"></activity>
     </application>
 
 </manifest>

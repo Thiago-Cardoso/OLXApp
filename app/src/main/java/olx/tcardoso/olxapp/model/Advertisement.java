@@ -2,11 +2,12 @@ package olx.tcardoso.olxapp.model;
 
 import com.google.firebase.database.DatabaseReference;
 
+import java.io.Serializable;
 import java.util.List;
 
 import olx.tcardoso.olxapp.helper.ConfigurationFirebase;
 
-public class Advertisement {
+public class Advertisement implements Serializable {
 
     private String idAdvertisement;
     private String state;

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -30,6 +31,7 @@ import dmax.dialog.SpotsDialog;
 import olx.tcardoso.olxapp.R;
 import olx.tcardoso.olxapp.adapter.AdapterAdvertisement;
 import olx.tcardoso.olxapp.helper.ConfigurationFirebase;
+import olx.tcardoso.olxapp.helper.RecyclerItemClickListener;
 import olx.tcardoso.olxapp.model.Advertisement;
 
 public class AdvertisementActivity extends AppCompatActivity {
@@ -69,6 +71,33 @@ public class AdvertisementActivity extends AppCompatActivity {
 
         //recovery advertisement for user public
         recoveryPublicAdvertisement();
+
+        //apply event click
+        recyclerAdvertisementPublics.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        this,
+                        recyclerAdvertisementPublics,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                                Advertisement advertisementSelect = listAdvertisements.get(position);
+                                Intent i = new Intent(AdvertisementActivity.this, ProductDetailActivity.class);
+                                i.putExtra( "anuncioSelecionado", advertisementSelect);
+                                startActivity(i);
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                ));
 
     }
 
